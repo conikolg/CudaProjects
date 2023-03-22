@@ -1,0 +1,9 @@
+# VS Code
+.vscode/
+.history/
+*.vsix
+
+# Compiled outputs
+*.exe
+*.exp
+*.lib
