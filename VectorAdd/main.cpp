@@ -1,16 +1,18 @@
 #include <cstdlib>
 #include <iostream>
 #include <time.h>
+#include <chrono>
+
+#define LEN 100000000
 
 void printArray(int *arr, int len);
 void vectorAdd(int *a, int *b, int *c, int len);
 
 int main()
 {
-    std::cout << "Running VectorAdd program..." << std::endl;
+    std::cout << "Running CPU VectorAdd program..." << std::endl;
 
     // Generate a and b vector arrays
-    const int LEN = 1024;
     int *a = (int *)malloc(LEN * sizeof(int));
     int *b = (int *)malloc(LEN * sizeof(int));
     srand(time(0));
@@ -28,8 +30,14 @@ int main()
     int *c = (int *)malloc(LEN * sizeof(int));
 
     // Perform computation
+    auto startTime = std::chrono::high_resolution_clock::now();
     vectorAdd(a, b, c, LEN);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    double elapsedTimeMs = std::chrono::duration<double, std::milli>(endTime-startTime).count();
+    
+    // Display results
     printArray(c, LEN);
+    std::cout << "Compute time: " << elapsedTimeMs << "ms" << std::endl;
 
     // Free memory
     free(a);
