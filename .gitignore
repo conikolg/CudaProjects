@@ -1,0 +1,7 @@
+# Libaries folder
+libs
+
+# VS Code
+.vscode/
+.history/
+*.vsix
